@@ -57,10 +57,12 @@ registro = router.post("/register", (req,res)=>{
                 res.json({
                     estado: "EXITOSO",
                     mensaje:"Usuario creado"
-                })         
+                });        
               });
         });
 
 });
+
+
 
 module.exports = router;
