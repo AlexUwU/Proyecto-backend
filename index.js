@@ -9,13 +9,13 @@ dotenv.config()
 app.use(bodyparser.json())
 app.use(cors())
 
-mongoose.connect('mongodb://localhost/Usuario', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://alex:alexander123@cluster0.f3k1w.mongodb.net/Petroll', {useNewUrlParser: true, useUnifiedTopology: true});
 var UsuarioSchema, Usuario;
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-    console.log("Base conectada")
+    console.log("Base de datos conectada conectada en Mongo DB Atlas")
     UsuarioSchema = new mongoose.Schema({
         usuario: String,
         contrasena: String
