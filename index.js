@@ -23,12 +23,9 @@ db.once('open', function() {
        Usuario=mongoose.model('Usuario', UsuarioSchema);
 });
 
+app.set('port', 3000);
 
-
-app.get("/",(req,res)=>{    
-   
-    
-})
+app.get('/', (req,res) => res.send('Petroll - Backend'));
 
 app.post("/login", (req,res)=>{
     let data= req.body;
@@ -90,6 +87,6 @@ app.post("/register", (req,res)=>{
 })
 
 
-
-app.listen(4000)
-
+app.listen(app.get('port'), () => {
+    console.log(`Server on port ${app.get('port')}`);
+});
