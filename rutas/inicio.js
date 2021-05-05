@@ -1,6 +1,8 @@
 const { Router } =  require('express');
 const router = Router();
 
+const Usuario = require('../modelos/usuario');
+
 
 inicio = router.post("/login", (req,res)=>{
     let data= req.body;

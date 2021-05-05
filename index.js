@@ -16,7 +16,7 @@ app.use(cors())
 app.get('/', (req,res) => res.send('Petroll - Backend'));
 
 //INICIO DE SESION
-app.use('/api', require('./rutas/inicio'));
+app.use('/petroll', require('./rutas/inicio'));
 
 app.listen(app.get('port'), () => {
     console.log(`Server on port ${app.get('port')}`);
