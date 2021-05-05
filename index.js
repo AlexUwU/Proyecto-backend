@@ -9,9 +9,12 @@ dotenv.config()
 
 require('./basededatos');
 
-app.set('port', 8009);
+
 app.use(express.json())
+
 app.use(cors())
+
+app.set('port', 8009);
 
 app.get('/', (req,res) => res.send('Petroll - Backend'));
 
