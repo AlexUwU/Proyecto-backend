@@ -3,11 +3,14 @@ const router = Router();
 
 const Usuario = require('../modelos/usuario');
 
+const crypto = require('crypto');
 
 inicio = router.post("/login", (req,res)=>{
     let data= req.body;
     console.log(data)
-    Usuario.find({ usuario: data.Usuario, contrasena: data.Contrasena}, 
+    var Contrasena = data.Contrasena;
+    Contrasena = crypto.createHash('md5').update(Contrasena).digest("hex");
+    Usuario.find({ usuario: data.Usuario, contrasena: Contrasena}, 
         function (err, usuario)
         {
             if(err || usuario.length === 0)
@@ -30,6 +33,9 @@ inicio = router.post("/login", (req,res)=>{
 registro = router.post("/register", (req,res)=>{
     let data= req.body;
     
+    var Contrasena = data.Contrasena;
+    Contrasena = crypto.createHash('md5').update(Contrasena).digest("hex");
+
     Usuario.find({ usuario: data.Usuario}, 
         function (err, usuarios)
         {
@@ -42,7 +48,7 @@ registro = router.post("/register", (req,res)=>{
                 })
                 return
             }
-            const usuario = new Usuario({ usuario: data.Usuario, contrasena: data.Contrasena});      
+            const usuario = new Usuario({ usuario: data.Usuario, contrasena: Contrasena});      
             usuario.save(function (err, usuario) {
                 if(err)
                 {
