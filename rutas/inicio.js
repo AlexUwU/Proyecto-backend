@@ -116,12 +116,8 @@ router.post("/deletesolicitud", async (req, res) => {
 
 router.post("/rechazarsolicitud", async (req, res) => {
     var x = req.body._id;
-    let doc = await Solicitud.findOneAndUpdate(
-        { _id: x },
-        {
-          estado: 'Rechazada'
-        }
-      );
+    var estado = "Rechazado"
+    let doc = await Solicitud.findOneAndUpdate({ _id: x },{ estado: estado});
       res.json({
         estado: "EXITOSO",
         mensaje: "Solicitud rechazada correctamente!",
@@ -130,12 +126,8 @@ router.post("/rechazarsolicitud", async (req, res) => {
 
 router.post("/aceptarsolicitud", async (req, res) => {
     var x = req.body._id;
-    let doc = await Solicitud.findOneAndUpdate(
-        { _id: x },
-        {
-          estado: 'Aceptada'
-        }
-      );
+    var estado = "Aceptada"
+    let doc = await Solicitud.findOneAndUpdate({ _id: x },{ estado: estado});
       res.json({
         estado: "EXITOSO",
         mensaje: "Solicitud aceptada correctamente!",
