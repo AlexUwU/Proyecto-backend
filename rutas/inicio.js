@@ -2,6 +2,7 @@ const { Router } =  require('express');
 const router = Router();
 
 const Usuario = require('../modelos/usuario');
+const Solicitud = require('../modelos/solicitud');
 
 const cifrar = require('crypto');
 
@@ -59,7 +60,6 @@ registro = router.post("/register", (req,res)=>{
                     })
                     return
                 }
-                console.log(usuario)
                 res.json({
                     estado: "EXITOSO",
                     mensaje:"Usuario creado"
@@ -68,6 +68,30 @@ registro = router.post("/register", (req,res)=>{
         });
 
 });
+
+
+registro = router.post("/crearsolicitud", (req,res)=>{
+    const titulo = req.body.titulo;
+    const descripcion = req.body.descripcion;
+    const newSolicitud = new Solicitud({titulo, descripcion});
+    newSolicitud.save();
+    res.json({
+        estado: "EXITOSO",
+        mensaje:"Solicitud iniciada correctamente!"
+    });  
+});
+
+
+router.get("/getsolicitudes", async (req, res) => {
+    const solicitudes = await Solicitud.find().sort("-_id");
+    res.json(solicitudes);
+});
+
+router.get("/getsolicitud", async (req, res) => {
+    const solicitudes = await Solicitud.find().sort("-_id");
+    res.json(solicitudes);
+});
+
 
 
 
