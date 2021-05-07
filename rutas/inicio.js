@@ -119,7 +119,7 @@ router.post("/rechazarsolicitud", async (req, res) => {
     let doc = await Solicitud.findOneAndUpdate(
         { _id: x },
         {
-          estadp: 'Rechazada'
+          estado: 'Rechazada'
         }
       );
       res.json({
@@ -133,7 +133,7 @@ router.post("/aceptarsolicitud", async (req, res) => {
     let doc = await Solicitud.findOneAndUpdate(
         { _id: x },
         {
-          estadp: 'Aceptada'
+          estado: 'Aceptada'
         }
       );
       res.json({
