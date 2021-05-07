@@ -1,10 +1,10 @@
 const { Router } =  require('express');
+var jwt = require("jsonwebtoken");
+const cifrar = require('crypto');
 const router = Router();
 
 const Usuario = require('../modelos/usuario');
 const Solicitud = require('../modelos/solicitud');
-
-const cifrar = require('crypto');
 
 inicio = router.post("/login", (req,res)=>{
     let data= req.body;
@@ -24,7 +24,15 @@ inicio = router.post("/login", (req,res)=>{
                 return
             }
             console.log(usuario)
+
+            const payload = {
+              check: true,
+            };
+            const token = jwt.sign(payload, 'laclavemasecretadelmundo', {
+              expiresIn: 1440,
+            });
             res.json({
+                token: token,
                 estado: "EXITOSO",
                 mensaje: "Bienvenido"    
             })         
