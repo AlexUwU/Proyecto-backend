@@ -15,11 +15,12 @@ app.use(express.json())
 app.use(cors())
 
 app.set('port', 8009);
+//app.set('port', 3000);
 
 app.get('/', (req,res) => res.send('Petroll - Backend'));
 
 //INICIO DE SESION
-app.use('/api', require('./rutas/inicio'));
+app.use('/petroll', require('./rutas/inicio'));
 
 app.listen(app.get('port'), () => {
     console.log(`Server on port ${app.get('port')}`);
