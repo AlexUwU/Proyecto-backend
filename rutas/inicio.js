@@ -1,15 +1,9 @@
 const { Router } =  require('express');
 const router = Router();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 const Usuario = require('../modelos/usuario');
 
 const cifrar = require('crypto');
-=======
->>>>>>> parent of ff918f1 (agregando cambios)
-=======
->>>>>>> parent of ff918f1 (agregando cambios)
 
 inicio = router.post("/login", (req,res)=>{
     let data= req.body;
