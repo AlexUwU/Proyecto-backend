@@ -29,7 +29,7 @@ inicio = router.post("/login", (req,res)=>{
               check: true,
             };
             const token = jwt.sign(payload, 'laclavemasecretadelmundo', {
-              expiresIn: 1440,
+              expiresIn: 1000,
             });
             res.json({
                 token: token,
