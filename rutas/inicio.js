@@ -134,8 +134,4 @@ router.post("/aceptarsolicitud", async (req, res) => {
       });
 });
 
-
-
-
-
 module.exports = router;
