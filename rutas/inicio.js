@@ -83,12 +83,12 @@ registro = router.post("/crearsolicitud", (req,res)=>{
 });
 
 
-router.get("/getsolicitudes", async (req, res) => {
+getsolicitudes = router.get("/getsolicitudes", async (req, res) => {
     const solicitudes = await Solicitud.find().sort("-_id");
     res.json(solicitudes);
 });
 
-router.post("/getsolicitud", async (req, res) => {
+getsolicitud = router.post("/getsolicitud", async (req, res) => {
     var x = req.body._id;
     Solicitud.findById(x, function (err, solicitud) {
       if (err) {
@@ -100,7 +100,7 @@ router.post("/getsolicitud", async (req, res) => {
     });
 });
 
-router.post("/deletesolicitud", async (req, res) => {
+deletesolicitud =router.post("/deletesolicitud", async (req, res) => {
     var x = req.body._id;
     Solicitud.deleteOne({ _id: x }, function (err) {
         if (err) {
@@ -114,7 +114,7 @@ router.post("/deletesolicitud", async (req, res) => {
       });
 });
 
-router.post("/rechazarsolicitud", async (req, res) => {
+rechazarsolicitud = router.post("/rechazarsolicitud", async (req, res) => {
     var x = req.body._id;
     var estado = "Rechazado"
     let doc = await Solicitud.findOneAndUpdate({ _id: x },{ estado: estado});
@@ -124,7 +124,7 @@ router.post("/rechazarsolicitud", async (req, res) => {
       });
 });
 
-router.post("/aceptarsolicitud", async (req, res) => {
+aceptarsolicitud = router.post("/aceptarsolicitud", async (req, res) => {
     var x = req.body._id;
     var estado = "Aceptada"
     let doc = await Solicitud.findOneAndUpdate({ _id: x },{ estado: estado});
