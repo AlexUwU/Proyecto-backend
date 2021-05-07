@@ -87,10 +87,32 @@ router.get("/getsolicitudes", async (req, res) => {
     res.json(solicitudes);
 });
 
-router.get("/getsolicitud", async (req, res) => {
-    const solicitudes = await Solicitud.find().sort("-_id");
-    res.json(solicitudes);
+router.post("/getsolicitud", async (req, res) => {
+    var x = req.body._id;
+    Solicitud.findById(x, function (err, solicitud) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(solicitud);
+        res.json(solicitud);
+      }
+    });
 });
+
+router.post("/deletesolicitud", async (req, res) => {
+    var x = req.body._id;
+    Solicitud.deleteOne({ _id: x }, function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json({
+            estado: "EXITOSO",
+            mensaje: "Lista eliminada correctamente!",
+          });
+        }
+      });
+});
+
 
 
 
