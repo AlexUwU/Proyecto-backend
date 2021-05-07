@@ -73,7 +73,8 @@ registro = router.post("/register", (req,res)=>{
 registro = router.post("/crearsolicitud", (req,res)=>{
     const titulo = req.body.titulo;
     const descripcion = req.body.descripcion;
-    const newSolicitud = new Solicitud({titulo, descripcion});
+    const estado = 'Pendiente' 
+    const newSolicitud = new Solicitud({titulo, descripcion,estado});
     newSolicitud.save();
     res.json({
         estado: "EXITOSO",
@@ -107,9 +108,37 @@ router.post("/deletesolicitud", async (req, res) => {
         } else {
           res.json({
             estado: "EXITOSO",
-            mensaje: "Lista eliminada correctamente!",
+            mensaje: "Solicitud eliminada correctamente!",
           });
         }
+      });
+});
+
+router.post("/rechazarsolicitud", async (req, res) => {
+    var x = req.body._id;
+    let doc = await Solicitud.findOneAndUpdate(
+        { _id: x },
+        {
+          estadp: 'Rechazada'
+        }
+      );
+      res.json({
+        estado: "EXITOSO",
+        mensaje: "Solicitud rechazada correctamente!",
+      });
+});
+
+router.post("/aceptarsolicitud", async (req, res) => {
+    var x = req.body._id;
+    let doc = await Solicitud.findOneAndUpdate(
+        { _id: x },
+        {
+          estadp: 'Aceptada'
+        }
+      );
+      res.json({
+        estado: "EXITOSO",
+        mensaje: "Solicitud aceptada correctamente!",
       });
 });
 
